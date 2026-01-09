@@ -2,17 +2,20 @@ package com.jsp.ecom.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.jsp.ecom.Repository.UserRepository;
+import com.jsp.ecom.entity.Merchant;
 import com.jsp.ecom.entity.User;
+import com.jsp.ecom.Repository.MerchantRepository;
+import com.jsp.ecom.Repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-
 
 @Repository
 @RequiredArgsConstructor
 public class UserDao {
-	
+
 	private final UserRepository userRepository;
+	private final MerchantRepository merchantRepository;
+
 
 	public boolean checkEmailAndMobieDuplicate(String email, Long mobile) {
 		return userRepository.existsByEmailOrMobile(email, mobile);
@@ -26,4 +29,10 @@ public class UserDao {
 		userRepository.save(user);
 	}
 
+	public void save(Merchant merchant) {
+		merchantRepository.save(merchant);
+	}
+
+	
+	
 }

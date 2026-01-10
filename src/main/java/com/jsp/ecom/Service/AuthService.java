@@ -3,6 +3,7 @@ package com.jsp.ecom.Service;
 
 import java.util.Map;
 
+import com.jsp.ecom.dto.CustomerDto;
 import com.jsp.ecom.dto.MerchantDto;
 import com.jsp.ecom.dto.OtpDto;
 
@@ -20,5 +21,13 @@ public interface AuthService {
 	Map<String, Object> verifyMerchantOtp(OtpDto dto);
 
 	Map<String, Object> resendMerchantOtp(String email);
+
+	Map<String, Object> registerCustomer(CustomerDto customerDto);
+
+	Map<String, Object> verifyCustomerOtp(OtpDto dto);
+
+	Map<String, Object> resendCustomerOtp(String email);
+
+	
 
 }

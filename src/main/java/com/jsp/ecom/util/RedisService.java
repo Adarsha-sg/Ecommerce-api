@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-
+import com.jsp.ecom.dto.CustomerDto;
 import com.jsp.ecom.dto.MerchantDto;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +34,15 @@ public class RedisService {
 
 	public MerchantDto getTempMerchantData(String email) {
 		return (MerchantDto) redisTemplate.opsForValue().get(email + "_merchant");
+	}
+
+	@Async
+	public void saveTempCustomerData(CustomerDto customerDto, String email) {
+		redisTemplate.opsForValue().set(email + "_customer", customerDto, Duration.ofMinutes(30));
+	}
+
+	public CustomerDto getTempCustomerData(String email) {
+		return (CustomerDto) redisTemplate.opsForValue().get(email + "_customer");
 	}
 
 

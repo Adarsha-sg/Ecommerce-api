@@ -1,6 +1,9 @@
 
 package com.jsp.ecom.dao;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.springframework.stereotype.Repository;
 
 import com.jsp.ecom.entity.Customer;
@@ -38,5 +41,19 @@ public class UserDao {
 
 	public void save(Customer customer) {
 		customerRepository.save(customer);
+	}
+	
+	public List<Merchant> getAllMerchants() {
+		List<Merchant> merchants = merchantRepository.findAll();
+		if (merchants.isEmpty())
+			throw new NoSuchElementException("No Merchant Records Found");
+		return merchants;
+	}
+
+	public List<Customer> getAllCustomers() {
+		List<Customer> customers = customerRepository.findAll();
+		if (customers.isEmpty())
+			throw new NoSuchElementException("No Customer Records Found");
+		return customers;
 	}
 }

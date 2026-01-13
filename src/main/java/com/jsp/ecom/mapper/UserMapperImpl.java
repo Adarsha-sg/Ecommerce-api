@@ -1,9 +1,14 @@
 package com.jsp.ecom.mapper;
 
+import com.jsp.ecom.dto.CustomerDto;
 import com.jsp.ecom.dto.MerchantDto;
 import com.jsp.ecom.dto.UserDto;
+import com.jsp.ecom.entity.Customer;
 import com.jsp.ecom.entity.Merchant;
 import com.jsp.ecom.entity.User;
+
+import java.util.List;
+
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
@@ -88,4 +93,34 @@ public class UserMapperImpl extends UserMapper {
 
         return merchantDto;
     }
+
+	@Override
+	public User toUserEntity(CustomerDto customerDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer toCustomerEntity(CustomerDto customerDto, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomerDto toCustomerDto(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MerchantDto> toMerchantDtoList(List<Merchant> merchants) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CustomerDto> toCustomerDtoList(List<Customer> customers) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

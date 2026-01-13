@@ -40,14 +40,14 @@ public class AuthController {
 
 	@GetMapping("/me")
 	@ResponseStatus(HttpStatus.OK)
-	@PreAuthorize("hasAnyRole('ADMIN','USER','MERCHANT')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','MERCHANT')")
 	public Map<String, Object> viewLoggedInUser(Principal principal) {
 		return authService.viewUser(principal.getName());
 	}
 
 	@PatchMapping("/password")
 	@ResponseStatus(HttpStatus.OK)
-	@PreAuthorize("hasAnyRole('ADMIN','USER','MERCHANT')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','MERCHANT')")
 	public Map<String, Object> updatePassword(Principal principal, @Valid @RequestBody PasswordDto passwordDto) {
 		return authService.updatePassword(principal.getName(), passwordDto.getOldPassword(),
 				passwordDto.getNewPassword());
@@ -88,5 +88,4 @@ public class AuthController {
 	public Map<String, Object> resendCustomerOtp(@PathVariable String email) {
 		return authService.resendCustomerOtp(email);
 	}
-
 }

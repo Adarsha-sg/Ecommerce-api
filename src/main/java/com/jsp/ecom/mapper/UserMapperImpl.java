@@ -6,15 +6,14 @@ import com.jsp.ecom.dto.UserDto;
 import com.jsp.ecom.entity.Customer;
 import com.jsp.ecom.entity.Merchant;
 import com.jsp.ecom.entity.User;
-
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-12T20:11:22+0530",
+    date = "2026-01-13T22:06:41+0530",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.42.0.v20250526-2018, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
@@ -90,37 +89,93 @@ public class UserMapperImpl extends UserMapper {
         merchantDto.setPassword( "**********" );
         merchantDto.setEmail( merchant.getUser().getEmail() );
         merchantDto.setMobile( merchant.getUser().getMobile() );
+        merchantDto.setId( (long)(int)merchant.getUser().getId() );
+        merchantDto.setStatus( merchant.getUser().isActive()?"Active":"BLOCKED" );
 
         return merchantDto;
     }
 
-	@Override
-	public User toUserEntity(CustomerDto customerDto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public User toUserEntity(CustomerDto customerDto) {
+        if ( customerDto == null ) {
+            return null;
+        }
 
-	@Override
-	public Customer toCustomerEntity(CustomerDto customerDto, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        User user = new User();
 
-	@Override
-	public CustomerDto toCustomerDto(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        user.setUsername( customerDto.getName() );
+        user.setEmail( customerDto.getEmail() );
+        user.setMobile( customerDto.getMobile() );
 
-	@Override
-	public List<MerchantDto> toMerchantDtoList(List<Merchant> merchants) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        user.setRole( com.jsp.ecom.enums.UserRole.CUSTOMER );
+        user.setActive( true );
+        user.setPassword( passwordEncoder.encode(customerDto.getPassword()) );
 
-	@Override
-	public List<CustomerDto> toCustomerDtoList(List<Customer> customers) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return user;
+    }
+
+    @Override
+    public Customer toCustomerEntity(CustomerDto customerDto, User user) {
+        if ( customerDto == null && user == null ) {
+            return null;
+        }
+
+        Customer customer = new Customer();
+
+        if ( customerDto != null ) {
+            customer.setAddress( customerDto.getAddress() );
+            customer.setName( customerDto.getName() );
+        }
+        customer.setUser( user );
+
+        return customer;
+    }
+
+    @Override
+    public CustomerDto toCustomerDto(Customer customer) {
+        if ( customer == null ) {
+            return null;
+        }
+
+        CustomerDto customerDto = new CustomerDto();
+
+        customerDto.setAddress( customer.getAddress() );
+        customerDto.setName( customer.getName() );
+
+        customerDto.setPassword( "**********" );
+        customerDto.setEmail( customer.getUser().getEmail() );
+        customerDto.setMobile( customer.getUser().getMobile() );
+        customerDto.setId( (long)(int)customer.getUser().getId() );
+        customerDto.setStatus( customer.getUser().isActive()?"Active":"BLOCKED" );
+
+        return customerDto;
+    }
+
+    @Override
+    public List<MerchantDto> toMerchantDtoList(List<Merchant> merchants) {
+        if ( merchants == null ) {
+            return null;
+        }
+
+        List<MerchantDto> list = new ArrayList<MerchantDto>( merchants.size() );
+        for ( Merchant merchant : merchants ) {
+            list.add( toMerchantDto( merchant ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<CustomerDto> toCustomerDtoList(List<Customer> customers) {
+        if ( customers == null ) {
+            return null;
+        }
+
+        List<CustomerDto> list = new ArrayList<CustomerDto>( customers.size() );
+        for ( Customer customer : customers ) {
+            list.add( toCustomerDto( customer ) );
+        }
+
+        return list;
+    }
 }

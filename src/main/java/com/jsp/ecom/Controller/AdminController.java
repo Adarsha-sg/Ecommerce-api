@@ -33,6 +33,21 @@ public class AdminController {
 		return adminService.getAllCustomers();
 	}
 	
+	
+	@GetMapping("/products")
+	@PreAuthorize("hasRole('ADMIN')")
+	public Map<String, Object> viewProducts() {
+		return adminService.getAllProducts();
+	}
+
+	@PatchMapping("/products/approve/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public Map<String, Object> approveProduct(@PathVariable Long id) {
+		return adminService.approveProduct(id);
+	}
+	
+	
+	
 	@PatchMapping("/block/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String, Object> blockUser(@PathVariable Integer id) {

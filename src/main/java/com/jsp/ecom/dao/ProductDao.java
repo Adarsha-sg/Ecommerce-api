@@ -1,3 +1,4 @@
+
 package com.jsp.ecom.dao;
 
 import java.util.List;
@@ -7,8 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import com.jsp.ecom.entity.Item;
 import com.jsp.ecom.entity.Merchant;
 import com.jsp.ecom.entity.Product;
+import com.jsp.ecom.Repository.ItemRepository;
 import com.jsp.ecom.Repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductDao {
 	private final ProductRepository productRepository;
+	private final ItemRepository itemRepository;
 
 	public void save(Product product) {
 		productRepository.save(product);
@@ -38,7 +42,7 @@ public class ProductDao {
 	public void delete(Product product) {
 		productRepository.delete(product);
 	}
-	
+
 	public List<Product> getProducts() {
 		List<Product> products = productRepository.findAll();
 		if (products.isEmpty())
@@ -71,7 +75,6 @@ public class ProductDao {
 				.getContent();
 		if (products.isEmpty())
 			throw new NoSuchElementException("No Products Found with Name: " + name);
-		System.out.println(products);
 		return products;
 	}
 
@@ -96,4 +99,20 @@ public class ProductDao {
 					"No Products Found within Price range : " + lowerRange + " and " + higherRange);
 		return products;
 	}
-}
+
+	public void saveItem(Item item) {
+		itemRepository.save(item);
+	}
+
+	public void deleteItem(Item item) {
+		itemRepository.deleteById(item.getId());
+	}
+
+	public void deleteItems(List<Item> items) {
+		for(Item item:items)
+			deleteItem(item);
+	}
+
+	
+	}
+

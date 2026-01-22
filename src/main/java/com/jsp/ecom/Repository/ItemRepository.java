@@ -1,3 +1,4 @@
+
 package com.jsp.ecom.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

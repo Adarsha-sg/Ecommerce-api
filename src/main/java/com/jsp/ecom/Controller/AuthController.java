@@ -88,4 +88,5 @@ public class AuthController {
 	public Map<String, Object> resendCustomerOtp(@PathVariable String email) {
 		return authService.resendCustomerOtp(email);
 	}
+
 }

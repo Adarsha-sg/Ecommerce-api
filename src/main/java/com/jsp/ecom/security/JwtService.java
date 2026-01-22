@@ -1,3 +1,4 @@
+
 package com.jsp.ecom.security;
 
 import java.security.Key;
@@ -61,7 +62,5 @@ public class JwtService {
 	private Claims extractAllClaims(String token) {
 		return Jwts.parser().setSigningKey(key).build().parseSignedClaims(token).getPayload();
 	}
-
-	
 
 }

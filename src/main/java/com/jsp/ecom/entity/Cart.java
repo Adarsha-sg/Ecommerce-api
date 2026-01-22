@@ -2,7 +2,6 @@ package com.jsp.ecom.entity;
 
 import java.util.List;
 
-import jakarta.mail.FetchProfile.Item;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

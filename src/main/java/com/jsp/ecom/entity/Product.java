@@ -1,4 +1,5 @@
-package com.jsp.ecom.entity;
+
+ package com.jsp.ecom.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +23,7 @@ public class Product {
 	private String category;
 	@Column(nullable = false)
 	private Double price;
-	@Column(nullable = false)
+	@Column(nullable = false,length = 1000)
 	private String description;
 	@Column(nullable = false)
 	private Integer stock;

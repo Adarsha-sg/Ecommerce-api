@@ -1,4 +1,3 @@
-
 package com.jsp.ecom.security;
 
 import java.util.Arrays;
@@ -22,7 +21,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<SimpleGrantedAuthority> list = Arrays.asList(new SimpleGrantedAuthority("ROLE_"+user.getRole().name()));
+		List<SimpleGrantedAuthority> list = Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 		return list;
 	}
 

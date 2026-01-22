@@ -1,3 +1,4 @@
+
 package com.jsp.ecom.Service;
 
 import java.util.List;
@@ -24,7 +25,6 @@ public class AdminServiceImpl implements AdminService {
 	private final UserMapper userMapper;
 	private final ProductMapper productMapper;
 	private final ProductDao productDao;
-	
 
 	@Override
 	public Map<String, Object> getAllMerchants() {

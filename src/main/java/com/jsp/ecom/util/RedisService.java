@@ -45,5 +45,4 @@ public class RedisService {
 		return (CustomerDto) redisTemplate.opsForValue().get(email + "_customer");
 	}
 
-
 }

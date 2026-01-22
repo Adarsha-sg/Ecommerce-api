@@ -1,3 +1,4 @@
+
 package com.jsp.ecom.entity;
 
 import jakarta.persistence.CascadeType;

@@ -10,6 +10,6 @@ import com.jsp.ecom.entity.User;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-	Optional<User> findByUser(User user);
+	Optional<Customer> findByUser(User user);
 
 }

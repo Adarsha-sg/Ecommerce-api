@@ -1,4 +1,3 @@
-
 package com.jsp.ecom.dao;
 
 import java.util.List;
@@ -109,10 +108,11 @@ public class ProductDao {
 	}
 
 	public void deleteItems(List<Item> items) {
-		for(Item item:items)
+		for (Item item : items)
 			deleteItem(item);
 	}
 
-	
+	public void saveAll(List<Product> products) {
+		productRepository.saveAll(products);
 	}
-
+}

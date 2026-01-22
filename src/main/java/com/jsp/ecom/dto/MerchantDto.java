@@ -1,4 +1,3 @@
-
 package com.jsp.ecom.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +9,6 @@ import lombok.Data;
 
 @Data
 public class MerchantDto {
-	
 	@JsonProperty(access = Access.READ_ONLY)
 	private Long id;
 	@NotEmpty(message = "Name is Required")
